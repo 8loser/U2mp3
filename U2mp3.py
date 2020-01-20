@@ -1,7 +1,6 @@
 import argparse
 from Regulator import BuildYoutubeURL
-from Prepare import AutoPackage
-from pytube import YouTube
+from Downloader import Download
 
 
 def command():
@@ -16,15 +15,12 @@ def command():
 
 
 def U2mp3(URL=None, File=None):
-    # 前置處理，檢查是否已安裝需要的套件，沒有的話自動安裝
-    AutoPackage('pytube')
-    AutoPackage('pytube3')
-
     # 有Youtube網址或影片代碼參數
     if URL is not None:
         # 正規化為標準網址
         list_video = BuildYoutubeURL(URL)
-        print(list_video)
+        # 下載影片
+        Download(list_video)
 
     # 有網址清單檔案
     if File is not None:
@@ -34,3 +30,9 @@ def U2mp3(URL=None, File=None):
 
 if __name__ == "__main__":
     command()
+
+
+# 測試
+urlList = ['AQWYfvgh_ws', 'https://www.youtube.com/watch?v=djACkCHl3JA&list=RDAQWYfvgh_ws&index=4',
+           'https://www.youtube.com/watch?v=o5muvc-LOlA&list=RDAQWYfvgh_ws&index=3']
+U2mp3(urlList)
