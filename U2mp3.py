@@ -1,6 +1,6 @@
 import argparse
 from Regulator import BuildYoutubeURL
-from Downloader import Download
+from Downloader import DownloadVideo
 
 
 def command():
@@ -20,7 +20,7 @@ def U2mp3(URL=None, File=None):
         # 正規化為標準網址
         list_video = BuildYoutubeURL(URL)
         # 下載影片
-        Download(list_video)
+        DownloadVideo(list_video)
 
     # 有網址清單檔案
     if File is not None:
