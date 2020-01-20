@@ -1,4 +1,5 @@
 import argparse
+from Regulator import BuildYoutubeURL
 from Prepare import AutoPackage
 from pytube import YouTube
 
@@ -21,13 +22,14 @@ def U2mp3(URL=None, File=None):
 
     # 有Youtube網址或影片代碼參數
     if URL is not None:
-        print('URL')
-        print(URL)
+        # 正規化為標準網址
+        list_video = BuildYoutubeURL(URL)
+        print(list_video)
 
     # 有網址清單檔案
     if File is not None:
-        print('File')
-        print(File)
+        # TODO 抓取檔案內網址清單
+        pass
 
 
 if __name__ == "__main__":
