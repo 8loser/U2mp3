@@ -1,4 +1,5 @@
 import re
+import os
 
 
 def BuildYoutubeURL(List_URL):
@@ -21,3 +22,19 @@ def BuildYoutubeURL(List_URL):
             # 沒找到對應參數，直接判定字串為代碼
             rtn.append(URL_sample % item)
     return rtn
+
+
+def BuildSavePath(tempFolder='temp'):
+    '''
+    使用參數建立完整儲存資料夾路徑回傳
+    預設完整儲存路徑 {程式所在位置}\\temp
+    如路徑不存在則自動建立
+    '''
+    # 儲存資料夾路徑
+    savePath = os.path.join(os.getcwd(), tempFolder)
+    # 儲存資料夾是否存在，不存在則建立
+    if not os.path.isdir(savePath):
+        print('儲存資料夾不存在')
+        print('建立儲存資料夾 %s' % savePath)
+        os.mkdir(savePath)
+    return savePath
