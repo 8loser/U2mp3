@@ -1,12 +1,12 @@
 from pytube import YouTube
-from Prepare import AutoPackage
+# from Prepare import AutoPackage
 from Regulator import BuildSavePath
 
 
 def DownloadVideo(list_video):
     # 前置處理，檢查是否已安裝需要的套件，沒有的話自動安裝
-    AutoPackage('pytube')
-    AutoPackage('pytube3')
+    # AutoPackage('pytube')
+    # AutoPackage('pytube3')
     # 下載位置
     savePath = BuildSavePath()
     for URL in list_video:
