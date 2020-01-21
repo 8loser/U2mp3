@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-settings.json
+# Visual Studio Code 設定檔
+.vscode
+
+# 暫存資料夾
 /temp
