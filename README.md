@@ -1,6 +1,8 @@
 # U2mp3
 Youtube轉mp3
 
+* 安裝需求套件
+    * pip install -r requirements.txt
 
 * 參數
     * -u (--url), YouTube網址或影片代碼(v=***)
