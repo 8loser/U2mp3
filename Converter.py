@@ -10,5 +10,4 @@ def ConvertMp3(sourcePath):
     sourcePath = '"%s"' % sourcePath
     targetPath = '"%s"' % targetPath
     # 系統呼叫 ffmpeg 執行轉檔
-    # TODO 如果目的mp3有相同檔案，則忽略
-    os.system('ffmpeg -i {0} {1}'.format(sourcePath, targetPath))
+    os.system('ffmpeg -n -i {0} {1}'.format(sourcePath, targetPath))
