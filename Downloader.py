@@ -1,3 +1,4 @@
+import os
 from pytube import YouTube
 from Regulator import BuildSavePath
 from Converter import ConvertMp3
@@ -9,6 +10,10 @@ def DownloadVideo(list_video):
     for URL in list_video:
         try:
             yt = YouTube(URL)
+            # 已下載過的檔案忽略
+            if os.path.isfile(os.path.join(savePath, yt.title.translate({ord(i): None for i in '.:'}) + '.mp4')):
+                print('%s 已存在' % yt.title)
+                continue
             print('下載 %s' % yt.title)
             yt.register_on_progress_callback(onProgress)
             yt.register_on_complete_callback(onComplete)
@@ -17,8 +22,8 @@ def DownloadVideo(list_video):
             # stream = yt.streams.filter(only_audio=True).first()
             stream = yt.streams.first()
             # 執行下載動作
-            # TODO 下載前先確認檔案是否已存在，已存在的不重複下載
             stream.download(savePath)
+
         except Exception as e:
             print('下載失敗 %s' % URL)
             print(e)

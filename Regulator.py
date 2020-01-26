@@ -37,6 +37,7 @@ def CheckFolder(folderName, folderDescription):
         os.mkdir(fullPath)
     return fullPath
 
+
 def BuildSavePath(tempFolder='temp'):
     '''
     使用參數建立完整儲存資料夾路徑回傳
@@ -44,6 +45,7 @@ def BuildSavePath(tempFolder='temp'):
     如路徑不存在則自動建立
     '''
     return CheckFolder(tempFolder, '暫存資料夾')
+
 
 def BuildMp3Path(mp3Folder='mp3'):
     '''
