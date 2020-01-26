@@ -1,5 +1,6 @@
 from pytube import YouTube
 from Regulator import BuildSavePath
+from Converter import ConvertMp3
 
 
 def DownloadVideo(list_video):
@@ -16,6 +17,7 @@ def DownloadVideo(list_video):
             # stream = yt.streams.filter(only_audio=True).first()
             stream = yt.streams.first()
             # 執行下載動作
+            # TODO 下載前先確認檔案是否已存在，已存在的不重複下載
             stream.download(savePath)
         except Exception as e:
             print('下載失敗 %s' % URL)
@@ -34,7 +36,7 @@ def onProgress(stream, chunk, file_handler, bytes_remaining):
 
 def onComplete(stream, file_handler):
     # 下載完成執行動作
-    print('\n')
+    ConvertMp3(file_handler.name)
     return
 
 

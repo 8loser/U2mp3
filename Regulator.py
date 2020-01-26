@@ -24,17 +24,30 @@ def BuildYoutubeURL(List_URL):
     return rtn
 
 
+def CheckFolder(folderName, folderDescription):
+    '''
+    檢查程式目錄下資料夾是否存在，不存在則建立
+    '''
+    # 完整資料夾路徑
+    fullPath = os.path.join(os.getcwd(), folderName)
+    # 資料夾是否存在，不存在則建立
+    if not os.path.isdir(fullPath):
+        # 顯示建立資料夾敘述
+        print('建立 %s 資料夾 %s' % (folderDescription, fullPath))
+        os.mkdir(fullPath)
+    return fullPath
+
 def BuildSavePath(tempFolder='temp'):
     '''
     使用參數建立完整儲存資料夾路徑回傳
     預設完整儲存路徑 {程式所在位置}\\temp
     如路徑不存在則自動建立
     '''
-    # 儲存資料夾路徑
-    savePath = os.path.join(os.getcwd(), tempFolder)
-    # 儲存資料夾是否存在，不存在則建立
-    if not os.path.isdir(savePath):
-        print('儲存資料夾不存在')
-        print('建立儲存資料夾 %s' % savePath)
-        os.mkdir(savePath)
-    return savePath
+    return CheckFolder(tempFolder, '暫存資料夾')
+
+def BuildMp3Path(mp3Folder='mp3'):
+    '''
+    建立轉換mp3後儲存資料夾 {程式所在位置}\\mp3
+    資料夾不存在則自動建立
+    '''
+    return CheckFolder(mp3Folder, 'mp3儲存位置')
