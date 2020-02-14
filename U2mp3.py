@@ -24,15 +24,18 @@ def U2mp3(URL=None, File=None):
 
     # 有網址清單檔案
     if File is not None:
-        # TODO 抓取檔案內網址清單
-        pass
+        # 將所有檔案清單內容轉為list
+        URL = []
+        for f in File:
+            fs = open(f, "r")
+            # 存到list
+            URL.extend(fs.readlines())
+            fs.close()
+        # 解析網址
+        list_video = BuildYoutubeURL(URL)
+        # 下載影片
+        DownloadVideo(list_video)
 
 
 if __name__ == "__main__":
     command()
-
-
-# 測試
-urlList = ['AQWYfvgh_ws', 'https://www.youtube.com/watch?v=djACkCHl3JA&list=RDAQWYfvgh_ws&index=4',
-           'https://www.youtube.com/watch?v=o5muvc-LOlA&list=RDAQWYfvgh_ws&index=3']
-U2mp3(urlList)
